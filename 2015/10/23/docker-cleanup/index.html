@@ -8,9 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Personal website of Kaushik Raj">
 
-    <title>SB-Admin-2 with Flask-Admin - Kaushik Raj</title>
+    <title>Cleaning Exited Docker - Kaushik Raj</title>
 
-    <link rel="canonical" href="http://kaushikraj.com/2015/09/18/sb-admin-2-admin-flask/">
+    <link rel="canonical" href="http://kaushikraj.com/2015/10/23/docker-cleanup/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -72,16 +72,16 @@
 
 
     <!-- Post Header -->
-<header class="intro-header" style="background-image: url('/img/bg/post-3.jpg')">
+<header class="intro-header" style="background-image: url('/img/bg/post-4.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="post-heading">
-                    <h1>SB-Admin-2 with Flask-Admin</h1>
+                    <h1>Cleaning Exited Docker</h1>
                     
-                    <h2 class="subheading">Now using Flask-Admin and is way more cooler.</h2>
+                    <h2 class="subheading">docker ps -a (so many Exited containers)</h2>
                     
-                    <span class="meta">Posted by Kaushik Raj on September 18, 2015</span>
+                    <span class="meta">Posted by Kaushik Raj on October 23, 2015</span>
                 </div>
             </div>
         </div>
@@ -95,58 +95,32 @@
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 
 				<p>
-The new template is an improvement over the <a href="/2015/08/27/sb-admin-2-python/">SB-Admin-2 in Python</a> template.
-This template uses <a href="http://flask-admin.readthedocs.org/en/latest/">Flask-Admin</a> and
-<a href="https://flask-login.readthedocs.org/en/latest/">Flask-Login</a>. Flask-Admin allows to represent all the pages as an admin index.
-Flask-Login helps with authentication.
+I tend to run docker containers in interactive terminal mode. Over time, this causes tonnes of zombie containers (<code>docker ps -a</code>). 
+Removing all those Exited containers is a pain. 
 </p>
 
 <p>
-Most of the UI controls have been made into macros (where it make sense). The macros get the data from a stub.
-</p>
-
-<p align="center">
-    <img class="img-responsive" src="/img/sb-admin-2.jpg" alt="SB-Admin-2" />
-</p>
-
-<h2 class="section-heading">
-Installation
-</h2>
-
-<p>
-Clone the code from <a href="https://github.com/kaushikraj/sb-admin-2-flask-admin">https://github.com/kaushikraj/sb-admin-2-flask-admin</a>
+The following single line command allows to remove all Exited containers.
 </p>
 
 <pre>
     <code>
-    $virtaulenv env
-    $source env/bin/activate
-    $pip install -r requirements.txt
+$docker ps -a | grep Exited | awk '{print $1}' | xargs --no-run-if-empty docker rm
     </code>
 </pre>
 
 <p>
-Optional step (to get the latest bower components).
+If you need to run docker in sudo mode, following is the command for that.
 </p>
 
 <pre>
     <code>
-    $bower install bower.json
+$sudo docker ps -a | grep Exited | awk '{print $1}' | xargs --no-run-if-empty sudo docker rm
     </code>
 </pre>
 
-<h2 class="section-heading">
-Executing the sample
-</h2>
-
-<pre>
-<code>
-    $python run.py
-</code>
-</pre>
-
 <p>
-Load the URL (http://localhost:5000/) on browser. Use the credentials "john:doe" or "marry:jane" to login.
+Kill one, Kill All!!
 </p>
 
 
@@ -155,13 +129,9 @@ Load the URL (http://localhost:5000/) on browser. Use the credentials "john:doe"
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2015/08/27/sb-admin-2-python/" data-toggle="tooltip" data-placement="top" title="SB-Admin-2 in Python">&larr; Previous Post</a>
+                        <a href="/2015/09/18/sb-admin-2-admin-flask/" data-toggle="tooltip" data-placement="top" title="SB-Admin-2 with Flask-Admin">&larr; Previous Post</a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/2015/10/23/docker-cleanup/" data-toggle="tooltip" data-placement="top" title="Cleaning Exited Docker">Next Post &rarr;</a>
-                    </li>
                     
                 </ul>
 
