@@ -8,9 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Personal website of Kaushik Raj">
 
-    <title>Kaushik Raj</title>
+    <title>Dockerized nginx/Flask App - Kaushik Raj</title>
 
-    <link rel="canonical" href="http://kaushikraj.com/">
+    <link rel="canonical" href="http://kaushikraj.com/2015/11/02/docker-nginx-flask/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -71,103 +71,89 @@
 </nav>
 
 
-    <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/bg/home.jpg')">
+    <!-- Post Header -->
+<header class="intro-header" style="background-image: url('/img/bg/post-5.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="site-heading">
-                    <h1>Kaushik Raj</h1>
-                    <hr class="small">
-                    <span class="subheading">Personal projects and randomness.</span>
+                <div class="post-heading">
+                    <h1>Dockerized nginx/Flask App</h1>
+                    
+                    <h2 class="subheading">Command line arguments in Docker/Nginx/Flask</h2>
+                    
+                    <span class="meta">Posted by Kaushik Raj on November 2, 2015</span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            
-<div class="post-preview">
-    <a href="/2015/11/02/docker-nginx-flask/">
-        <h2 class="post-title">            Dockerized nginx/Flask App
-        </h2>
-        
-        <h3 class="post-subtitle">
-            Command line arguments in Docker/Nginx/Flask
-        </h3>
-        
-    </a>
-    <p class="post-meta">Posted by Kaushik Raj on November 2, 2015</p>
-</div>
-<hr>
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 
-<div class="post-preview">
-    <a href="/2015/10/23/docker-cleanup/">
-        <h2 class="post-title">            Cleaning Exited Docker
-        </h2>
-        
-        <h3 class="post-subtitle">
-            docker ps -a (so many Exited containers)
-        </h3>
-        
-    </a>
-    <p class="post-meta">Posted by Kaushik Raj on October 23, 2015</p>
-</div>
-<hr>
+				<p>
+Flask comes with an in-built webserver. The in-built server is fine for development purpose but
+not so much for production. There are multiple options available for using a good webserver. <a href="http://nginx.org">nginx</a>
+is a popular choice.
+</p>
 
-<div class="post-preview">
-    <a href="/2015/09/18/sb-admin-2-admin-flask/">
-        <h2 class="post-title">            SB-Admin-2 with Flask-Admin
-        </h2>
-        
-        <h3 class="post-subtitle">
-            Now using Flask-Admin and is way more cooler.
-        </h3>
-        
-    </a>
-    <p class="post-meta">Posted by Kaushik Raj on September 18, 2015</p>
-</div>
-<hr>
+<p>
+When using Flask's in-built server,  command line arguments can be used to initialize certain values.
+One can even use `OptionParser` to parse the command line arguments. This is even true when the Flask app
+is hosted in Docker container.
+</p>
 
-<div class="post-preview">
-    <a href="/2015/08/27/sb-admin-2-python/">
-        <h2 class="post-title">            SB-Admin-2 in Python
-        </h2>
-        
-        <h3 class="post-subtitle">
-            Ported in Python for easy adaptation.
-        </h3>
-        
-    </a>
-    <p class="post-meta">Posted by Kaushik Raj on August 27, 2015</p>
-</div>
-<hr>
+<p>
+In case of nginx, where python/Flask is invoked via uwsgi command line arguments is not a viable solution.
+</p>
 
-<div class="post-preview">
-    <a href="/2014/07/14/prime/">
-        <h2 class="post-title">            Prime - Modified 2048 game
-        </h2>
-        
-        <h3 class="post-subtitle">
-            copy-paste is the easiest way to learn.
-        </h3>
-        
-    </a>
-    <p class="post-meta">Posted by Kaushik Raj on July 14, 2014</p>
-</div>
-<hr>
+<p>
+To workaround the command line argument limitation, one can use environment variables instead. In the following
+example, the environment variables are set for the docker container.
+</p>
+
+<pre class="code">
+$docker run .... -e param1=value1 ....
+</pre>
+
+<p>
+In the previous case, an environment variable "param1" with "value1" is set for the docker container (at runtime).
+To read these environment variables in the flask app, use the following code
+</p>
+
+<pre class="code">
+using os
+
+param1 = os.environ.get("param1", None)
+if param1:
+    # param1 was set via environment variable
+    # use param1
+</pre>
+
+<p>
+Checkout a working sample at <a href="https://github.com/kaushikraj/nginx-flask-env">https://github.com/kaushikraj/nginx-flask-env</a>.
+In this sample, the output of a method is controlled by environment variable.
+</p>
 
 
-<!-- Pager -->
+                <hr>
 
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2015/10/23/docker-cleanup/" data-toggle="tooltip" data-placement="top" title="Cleaning Exited Docker">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                </ul>
 
+            </div>
         </div>
     </div>
-</div>
+</article>
 
 <hr>
 
