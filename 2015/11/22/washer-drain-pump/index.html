@@ -8,9 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Personal website of Kaushik Raj">
 
-    <title>REST with Flask - Kaushik Raj</title>
+    <title>Fixing nd (not draining) issue - Kaushik Raj</title>
 
-    <link rel="canonical" href="http://kaushikraj.com/2015/11/06/flask-rest/">
+    <link rel="canonical" href="http://kaushikraj.com/2015/11/22/washer-drain-pump/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -72,16 +72,16 @@
 
 
     <!-- Post Header -->
-<header class="intro-header" style="background-image: url('/img/bg/post-6.jpg')">
+<header class="intro-header" style="background-image: url('/img/bg/post-7.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="post-heading">
-                    <h1>REST with Flask</h1>
+                    <h1>Fixing nd (not draining) issue</h1>
                     
-                    <h2 class="subheading">Reflections on building REST web services with python/Flask</h2>
+                    <h2 class="subheading">Paying my dues to engineering degree?</h2>
                     
-                    <span class="meta">Posted by Kaushik Raj on November 6, 2015</span>
+                    <span class="meta">Posted by Kaushik Raj on November 22, 2015</span>
                 </div>
             </div>
         </div>
@@ -95,83 +95,95 @@
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 
 				<p>
-I am pretty new to python/non-Microsoft stack. In this post, I reflect on
-building a REST web services with python/Flask.
+From time to time, I enjoy fixing issues that requires me to come out of my comfort zone.
+</p>
+<p>
+My washing machine broke down on Thursday. It's a front load Samsung washing machine.
+The machine broke down with "nd" error code. The error code means - water from the washing machine is "not
+draining". When Samsung washing machine errors out with "nd" code, it will lock the front
+door and will not open till the waster has been drained.
+</p>
+<p>
+For "nd" code, the washing machine's manual instructions was simple - call the 800 number. Samsung service was
+not much of use. They simply redirected me to an authorized service center. As it turns out, they are busy.  
+The authorized service center didn't have any appointments for the next 3 weeks. Seriously?
+</p>
+<p>
+I had to take matters in my hands, after all I am an engineer by training.
+</p>
+<p>Opening the top and the back of the washing machine is easy. Draining water from the machine is not 
+easy though. I had to scramble and find utensils which would fit inside the machine and collect water.
+I eventually managed to drain the machine but not before flooding the mud room with smelly dirty water.</p>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4" align="center">
+            <img class="img-thumbnail" src="/img/samsung/open-machine.jpg" />
+            <span class="caption text-muted">Topless - A big drum inside</span>
+        </div>
+        <div class="col-sm-4" align="center">
+            <img class="img-thumbnail" src="/img/samsung/water-draining.jpg" />
+            <span class="caption text-muted">Water draining</span>
+        </div>
+    </div>
+</div>
+<p>Next step was to clean the hose and look for any debris that was blocking the flow of water.
+That hose was dirty and I found the culprit that was blocking the flow. It was a penny, the 
+root cause of the "nd" issue.</p>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4" align="center">
+            <img class="img-thumbnail" src="/img/samsung/penny-in-hose.jpg" />
+            <span class="caption text-muted">Stuck in the hose</span>
+        </div>
+        <div class="col-sm-4" align="center">
+            <img class="img-thumbnail" src="/img/samsung/culprit-penny.jpg" />
+            <span class="caption text-muted">Culprit "not lucky" penny</span>
+        </div>
+    </div>
+</div>
+<p>After cleaning the hose, it was the time for giving the drain pump a bath.</p>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4" align="center">
+            <img class="img-thumbnail" src="/img/samsung/pump-out.jpg" />
+            <span class="caption text-muted">Drain pump out</span>
+        </div>
+        <div class="col-sm-4" align="center">
+            <img class="img-thumbnail" src="/img/samsung/clean-pump-put-back.jpg" />
+            <span class="caption text-muted">Clean as a whistle</span>
+        </div>
+    </div>
+</div>
+<p>After putting back the covers, it was time to test. I put the machine in spin cycle.
+The machine starts working again.</p>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4" align="center">
+            <img class="img-thumbnail" src="/img/samsung/all-fixed.jpg" />
+            <span class="caption text-muted">Putting back was quick</span>
+        </div>
+        <div class="col-sm-4" align="center">
+            <img class="img-thumbnail" src="/img/samsung/hurray-working.jpg" />
+            <span class="caption text-muted">Hurray it works now!</span>
+        </div>
+    </div>
+</div>
+
+<p>
+After spending 3 hours, getting the floor all wet and dirty, the washing machine is working!
+Hurray! It's time to celebrate and do some more cleaning.
 </p>
 
-<h2>python</h2>
-<p>
-Coming from Microsoft background, I was skeptical about building REST web services with python.
-I didn't know python at the start of the project and was the main reason for my apprehensions.
-It turned out, learning python wasn't a big issue. Although, some python qualities/limitations kept the
-development process pretty interesting/challenging.
-</p>
-<p>
-In my opinion, python is not suitable for *large codebase* because of the following reasons:
-<ul>
-<li>Python is a scripting language (no compile-time error detection).</li>
-<li>Not a true object oriented language.</li>
-<li>Complete mess upgrading versions (2.x vs 3.x).</li>
-</ul>
-</p>
-<p>
-On the other hand, python has some cool features (I wish .NET had).
-<ul>
-<li>Virtual environment.</li>
-<li>Testing python code is 100 times easier than testing .NET code.</li>
-<li>Tuples - .NET has them but they are not as hip.</li>
-<li>Deployment with "cp -r"</li>
-</ul>
-</p>
-
-<h2>Flask</h2>
-<p>
-There are many frameworks available to build REST web services with python. I settled on Flask because
-it seemed the most popular one. For some reason, I was expecting an official framework, just like
-ASP.NET is for .NET.
-</p>
-<p>
-Flask is light weight and easy to use framework. It comes with an inbuilt web server. It's embarrasing
-that I was stucked with the inbuilt web server for a long time before realizing that the web server is not
-suited for production purpose. This situation is not different from ASP.NET/Visual Studio. Although, in case 
-of Viusal Studio the development server is rarely used.
-</p>
-
-<h2>Routing and Resources</h2>
-<p>
-Flask's extenstion (Flask-RESTful) comes with base class <code>Resource</code>. It should be use for web methods exposed on a resource.
-This <a href="http://blog.miguelgrinberg.com/post/designing-a-restful-api-using-flask-restful">blog post</a> explains how it works.
-While it is not required to use <code>Resource</code> base class, I highly recommend it. If the code doesn't use it, route 
-maintainence is challenging.
-</p>
-
-<h2>virtualenv</h2>
-<p>
-I absolutely love virtaulenv. Super easy way to isolate dependencies. I highly recommend using virtualenv
-during development/testing. It is also a good practice to have "requirements.txt" and "testrequirements.txt" separately.
-</p>
-
-<h2>No virtualenv please</h2>
-<p>
-While virtualenv is great for development, I don't think it should be used for production. There are some known 
-<a href="https://news.ycombinator.com/item?id=6859371">issues</a> with virtaulenv.
+<p align="center">
+<img class="img-responsive" src="/img/samsung/nd-again.jpg" />
+<span class="caption text-muted">Wait What??? Not again.</span>
 </p>
 
 <p>
-Instead of using virtualenv in the production, it would be better to use Docker. Docker gives the necessary
-isolation and easy to deploy mechanism. python already has containers published on Docker <a href="https://hub.docker.com/_/python/">hub</a>.
-</p>
-
-<h2>Nginx</h2>
-<p>
-Ditch the inbuild Flask webserver for nginx. This should be a no-brainer for deploying REST web services in production. My previous 
-<a href="/2015/11/02/docker-nginx-flask/">blog</a> talks about this topic.
-</p>
-
-<p>
-Super thanks to Miguel. His 
-<a href="http://blog.miguelgrinberg.com/post/designing-a-restful-api-with-python-and-flask">blog</a> helped a LOT.
-There is still so much to learn.
+Yes, the washing machine is still broken and water doesn't drain. It turns out the issue
+is not the penny stuck in hose but broken drain pump. I had to order the drain pump.
+Waiting for it to get delivered so that I can try to fix the machine again. 
+Picture abhi baaki hai dost.
 </p>
 
 
@@ -180,13 +192,9 @@ There is still so much to learn.
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2015/11/02/docker-nginx-flask/" data-toggle="tooltip" data-placement="top" title="Dockerized nginx/Flask App">&larr; Previous Post</a>
+                        <a href="/2015/11/06/flask-rest/" data-toggle="tooltip" data-placement="top" title="REST with Flask">&larr; Previous Post</a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/2015/11/22/washer-drain-pump/" data-toggle="tooltip" data-placement="top" title="Fixing nd (not draining) issue">Next Post &rarr;</a>
-                    </li>
                     
                 </ul>
 
