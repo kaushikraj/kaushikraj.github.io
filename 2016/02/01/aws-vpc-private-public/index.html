@@ -8,9 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Personal website of Kaushik Raj">
 
-    <title>Prime - Modified 2048 game - Kaushik Raj</title>
+    <title>AWS - VPC with Public/Private Subnet and NAT instance - Kaushik Raj</title>
 
-    <link rel="canonical" href="http://kaushikraj.com/2014/07/14/prime/">
+    <link rel="canonical" href="http://kaushikraj.com/2016/02/01/aws-vpc-private-public/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -72,16 +72,16 @@
 
 
     <!-- Post Header -->
-<header class="intro-header" style="background-image: url('/img/bg/post-1.jpg')">
+<header class="intro-header" style="background-image: url('/img/bg/post-8.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="post-heading">
-                    <h1>Prime - Modified 2048 game</h1>
+                    <h1>AWS - VPC with Public/Private Subnet and NAT instance</h1>
                     
-                    <h2 class="subheading">copy-paste is the easiest way to learn.</h2>
+                    <h2 class="subheading">Outbound traffic from private subnet to internet</h2>
                     
-                    <span class="meta">Posted by Kaushik Raj on July 14, 2014</span>
+                    <span class="meta">Posted by Kaushik Raj on February 1, 2016</span>
                 </div>
             </div>
         </div>
@@ -95,31 +95,39 @@
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 
 				<p>
-<a href="/prime">PRIME</a> is a simple game written in JavaScript.
-The objective of the game is to find a prime number by selecting one or more tiles (whose sum is a prime number) in 4x4 grid.
-Are you smart enough? Give it a try.
-</p>
-
-<p align="center">
-<a href="/prime">
-    <img class="img-responsive" src="/img/prime.png" alt="Prime" />
-</a>
+I recently created a VPC with 2 public and 2 private subnets with a NAT instance and spent considerable time
+on getting the internet work from the private subnet.
 </p>
 
 <p>
-The game is a modification of the popular <a href="https://gabrielecirulli.github.io/2048/">2048</a> game. 
-Source code of the game can be found at <a href="https://github.com/kaushikraj/prime">https://github.com/kaushikraj/prime</a>
+The VPC configuration for my project is looks very similar to the one described <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Scenario2.html">here</a>.
 </p>
+
+<p>
+Even after getting all the configuration done (Elastic IP for NAT instance, Security Groups, and Disabling Source/Destination Check), 
+the outbound traffic to the internet (from private subnet) didn't work till
+I found this blogpost - <a href="https://rbgeek.wordpress.com/2014/04/23/add-a-custom-nat-instance-in-aws-vpc/">https://rbgeek.wordpress.com/2014/04/23/add-a-custom-nat-instance-in-aws-vpc/</a>
+</p>
+
+<p>
+The command that did the trick was executing the following on the NAT instance
+</p>
+
+<pre>
+    <code>
+iptables -t nat -A POSTROUTING -o eth0 -s 10.100.20.0/24 -j MASQUERADE
+    </code>
+</pre>
 
 
                 <hr>
 
                 <ul class="pager">
                     
-                    
-                    <li class="next">
-                        <a href="/2015/08/27/sb-admin-2-python/" data-toggle="tooltip" data-placement="top" title="SB-Admin-2 in Python">Next Post &rarr;</a>
+                    <li class="previous">
+                        <a href="/2015/11/22/washer-drain-pump/" data-toggle="tooltip" data-placement="top" title="Fixing nd (not draining) issue">&larr; Previous Post</a>
                     </li>
+                    
                     
                 </ul>
 
